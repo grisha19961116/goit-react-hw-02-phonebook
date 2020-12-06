@@ -14,16 +14,12 @@ class ContactForm extends Component {
       phoneNumber: '',
     });
   };
-  handleChange = ({ target }) => {
-    const { name, value } = target;
+  handleChange = even => {
+    const { name, value } = even.target;
     this.setState(() => {
-      if (name === 'nick') {
+      if (name === 'nick' || name === 'phoneNumber') {
         return {
-          nick: value,
-        };
-      } else if (name === 'phoneNumber') {
-        return {
-          phoneNumber: value,
+          [name]: value,
         };
       }
     });
@@ -42,22 +38,12 @@ class ContactForm extends Component {
       });
     }
     this.setState(({ nick, phoneNumber }) => {
-      if (nick === '' || phoneNumber === '') {
-        return {
-          contacts: [...contacts],
-        };
-      } else if (contacts.length === 0) {
-        return {
-          contacts: [{ nickName: nick, id: uuidv4(), number: phoneNumber }],
-        };
-      } else {
-        return {
-          contacts: [
-            ...contacts,
-            { nickName: nick, id: uuidv4(), number: phoneNumber },
-          ],
-        };
-      }
+      return {
+        contacts: [
+          ...contacts,
+          { nickName: nick, id: uuidv4(), number: phoneNumber },
+        ],
+      };
     });
     this.reset();
   };
