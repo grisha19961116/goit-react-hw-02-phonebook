@@ -17,11 +17,9 @@ class ContactForm extends Component {
   handleChange = even => {
     const { name, value } = even.target;
     this.setState(() => {
-      if (name === 'nick' || name === 'phoneNumber') {
-        return {
-          [name]: value,
-        };
-      }
+      return {
+        [name]: value,
+      };
     });
   };
   handleSubmit = even => {
