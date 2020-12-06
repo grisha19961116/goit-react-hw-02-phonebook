@@ -3,6 +3,7 @@ export default function ContactList({
   propContactsFilter,
   filterByInput,
   clickOn,
+  reset,
 }) {
   if (propContactsFilter === []) {
     return null;
@@ -20,7 +21,10 @@ export default function ContactList({
                   type="click"
                   id={id}
                   className={style.button__delete}
-                  onClick={even => clickOn(even)}
+                  onClick={even => {
+                    clickOn(even);
+                    reset();
+                  }}
                 >
                   Delete!
                 </button>

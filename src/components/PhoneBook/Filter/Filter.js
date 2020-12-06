@@ -15,6 +15,11 @@ class Filter extends Component {
       }
     });
   };
+  resetFilter = () => {
+    this.setState(prevState => ({
+      filter: '',
+    }));
+  };
   render() {
     const { filter } = this.state;
     const { propContacts, click } = this.props;
@@ -36,6 +41,7 @@ class Filter extends Component {
           propContactsFilter={propContacts}
           filterByInput={filter}
           clickOn={click}
+          reset={this.resetFilter.bind(this)}
         />
       </>
     );
