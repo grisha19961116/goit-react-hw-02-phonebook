@@ -63,10 +63,8 @@ class ContactForm extends Component {
   };
   delete(id) {
     this.setState(prevState => ({
-      contacts: prevState.contacts.filter(el => el.id !== id),
+      contacts: [...prevState.contacts.filter(el => el.id !== id)],
     }));
-    console.log(this.state.contacts.length, `click`);
-    console.log(id);
   }
   render() {
     const { nick, phoneNumber, contacts } = this.state;
@@ -102,10 +100,9 @@ class ContactForm extends Component {
           <ul className={style.ul__delete}>
             {contacts.map(({ id }) => {
               return (
-                <li className={style.li__delete}>
+                <li className={style.li__delete} key={id}>
                   <button
                     type="click"
-                    key={id}
                     id={id}
                     className={style.button__delete}
                     onClick={this.delete.bind(this, id)}
