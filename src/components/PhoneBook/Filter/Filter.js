@@ -17,7 +17,7 @@ class Filter extends Component {
   };
   render() {
     const { filter } = this.state;
-    const { propContacts } = this.props;
+    const { propContacts, click } = this.props;
     return (
       <>
         <h2>Contacts</h2>
@@ -32,8 +32,11 @@ class Filter extends Component {
             onChange={this.handleChangeFilter}
           />
         </label>
-
-        <ContactList propContactsFilter={propContacts} filterByInput={filter} />
+        <ContactList
+          propContactsFilter={propContacts}
+          filterByInput={filter}
+          clickOn={click}
+        />
       </>
     );
   }

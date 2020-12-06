@@ -61,14 +61,13 @@ class ContactForm extends Component {
     });
     this.reset();
   };
-  delete(id) {
+  delete = ({ target }) => {
     this.setState(prevState => ({
-      contacts: [...prevState.contacts.filter(el => el.id !== id)],
+      contacts: [...prevState.contacts.filter(el => el.id !== target.id)],
     }));
-  }
+  };
   render() {
     const { nick, phoneNumber, contacts } = this.state;
-    console.log(contacts.length, `before props`);
     return (
       <>
         <h1>PhoneBook</h1>
@@ -87,7 +86,7 @@ class ContactForm extends Component {
             phoneNumber
             <input
               value={phoneNumber}
-              type="number"
+              type="phone"
               name="phoneNumber"
               placeholder="Enter user phoneNumber"
               onChange={this.handleChange}
@@ -96,23 +95,7 @@ class ContactForm extends Component {
           <button type="submit">Add to contacts</button>
         </form>
         <div>
-          <Filter propContacts={contacts} />
-          <ul className={style.ul__delete}>
-            {contacts.map(({ id }) => {
-              return (
-                <li className={style.li__delete} key={id}>
-                  <button
-                    type="click"
-                    id={id}
-                    className={style.button__delete}
-                    onClick={this.delete.bind(this, id)}
-                  >
-                    Delete!
-                  </button>
-                </li>
-              );
-            })}
-          </ul>
+          <Filter propContacts={contacts} click={this.delete.bind(this)} />
         </div>
       </>
     );
