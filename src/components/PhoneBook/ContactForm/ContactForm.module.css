@@ -1,0 +1,52 @@
+h1 {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+  font-size: 70px;
+  color: teal;
+  padding-bottom: 2%;
+}
+form {
+  width: 50%;
+  min-height: 400px;
+  display: block;
+  background-color: wheat;
+  margin: 0 auto;
+  border: solid 8px black;
+}
+label {
+  display: block;
+  width: 100%;
+  margin: 0 auto;
+  font-size: 70px;
+  line-height: 120px;
+  padding: 2%;
+  color: rgb(128, 36, 0);
+  padding-bottom: 2%;
+}
+input {
+  width: 100%;
+  padding-top: 2%;
+}
+button {
+  width: 100%;
+  height: 100%;
+}
+.button__delete:hover {
+  background-color: chartreuse;
+}
+.ul__delete {
+  width: 30%;
+  display: inline-block;
+  list-style: none;
+}
+.li__delete {
+  text-align: center;
+  height: 150px;
+  margin: 0 auto;
+  border: solid 4px rgb(228, 21, 21);
+  background-color: grey;
+  color: rgb(72, 255, 0);
+  margin-bottom: 5px;
+  font-size: 60px;
+}
