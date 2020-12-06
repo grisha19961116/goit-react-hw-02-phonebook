@@ -23,19 +23,19 @@ class ContactForm extends Component {
     });
   };
   handleSubmit = even => {
-    const { contacts, nick } = this.state;
     even.preventDefault();
-    if (contacts.length > 0) {
-      contacts.find(elem => {
-        if (elem.nickName === nick) {
-          alert(
-            `we have already contact with this nick name "${nick.toLocaleUpperCase()}"`,
-          );
-          this.reset();
-        }
-      });
+    const { nick, contacts } = this.state;
+    const check = contacts.some(el => {
+      return el.nickName === nick;
+    });
+    if (check) {
+      alert(
+        `we have already contact with this nick name "${nick.toLocaleUpperCase()}"`,
+      );
+      this.reset();
+      return;
     }
-    this.setState(({ nick, phoneNumber }) => {
+    this.setState(({ nick, phoneNumber, contacts }) => {
       return {
         contacts: [
           ...contacts,
