@@ -1,4 +1,5 @@
 import style from './ContactForm.module.css';
+import { ToastContainer, toast } from 'react-toastify';
 import { Component } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 const INITIAL_STATE = {
@@ -24,7 +25,7 @@ class ContactForm extends Component {
     const { name, phone } = this.state;
     const { onCheckUnique } = this.props;
     if (!name || !phone) {
-      alert('Some filed is empty');
+      toast('Some filed is empty');
       return false;
     }
     return onCheckUnique(name);
@@ -42,7 +43,7 @@ class ContactForm extends Component {
           onChange={this.handleChangeForm}
         ></input>
         <input
-          type="phone"
+          type="tel"
           name="phone"
           placeholder="Enter phone number"
           value={phone}

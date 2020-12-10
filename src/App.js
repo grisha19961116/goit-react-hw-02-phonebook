@@ -1,4 +1,6 @@
 import { Component } from 'react';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from 'react-toastify';
 import ContactList from './components/ContactList/ContactList.js';
 import ContactForm from './components/ContactForm/ContactForm.js';
 import Filter from './components/Filter/Filter.js';
@@ -50,6 +52,7 @@ export default class App extends Component {
           contacts={visibleContacts}
           onRemove={this.handleRemoveContact}
         />
+        <ToastContainer></ToastContainer>
       </>
     );
   }
