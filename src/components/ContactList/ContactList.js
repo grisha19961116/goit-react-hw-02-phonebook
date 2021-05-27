@@ -1,19 +1,17 @@
 import style from './ContactList.module.css';
 
-const ContactList = ({ contacts, onRemove }) => {
+const ContactList = ({ contacts, listenerOnRemove }) => {
   if (contacts.length === 0) return null;
   return (
     <ul>
       {contacts.map(({ id, name, phone }) => {
         return (
           <li key={id}>
-            {name} : {phone}{' '}
-            <button
-              onClick={() => onRemove(id)}
-              className={style.button__delete}
-            >
+            <p className={style.name}>{name}</p>
+            <p className={style.phone}>{phone}</p>
+            <p onClick={() => listenerOnRemove(id)} className={style.p__delete}>
               Delete
-            </button>
+            </p>
           </li>
         );
       })}
