@@ -1,4 +1,4 @@
-ul {
+.contactUl {
   width: 94%;
   display: flex;
   flex-wrap: wrap;
@@ -6,11 +6,11 @@ ul {
   padding-bottom: 30px;
   list-style: none;
 }
-li {
+.contactLi {
   height: 80px;
   width: 21%;
   padding-top: 40px;
-  margin-bottom: 15px;
+  margin-bottom: 40px;
   font-size: 25px;
   color: rgb(10, 7, 7);
 }

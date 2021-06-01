@@ -1,7 +1,7 @@
-import style from './ContactForm.module.css';
-import { toast } from 'react-toastify';
 import { Component } from 'react';
+import { toast } from 'react-toastify';
 import { v4 as uuidv4 } from 'uuid';
+import style from './ContactForm.module.css';
 
 const INITIAL_STATE = {
   name: '',
@@ -19,23 +19,69 @@ class ContactForm extends Component {
   validateFrom = () => {
     const { name, phone } = this.state;
     const { onCheckUnique } = this.props;
-    if (!name || !phone) {
-      toast('Some filed is empty');
+
+    if (!name && !phone) {
+      toast.warn('⚠️ Fields are empty!', {
+        position: 'top-right',
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return false;
     }
-    if (phone.length > 10) {
-      toast('to long number');
+    if (!name && phone) {
+      toast.warn('⚠️ Field name empty!', {
+        position: 'top-right',
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return false;
     }
-    if (phone.length < 10) {
-      toast('to short number');
+    if (!phone && name) {
+      toast.warn('⚠️ Field phone empty!', {
+        position: 'top-right',
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return false;
     }
+    if (phone.length !== 10) {
+      toast.warn('⚠️ Number has to have 10 symbols!', {
+        position: 'top-right',
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+      return false;
+    }
+
     if (name.length > 12) {
-      toast('to long name');
+      toast.warn('⚠️ Name has to be no longer 12 characters!', {
+        position: 'top-right',
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       return false;
     }
-    return onCheckUnique(name);
+    return onCheckUnique(name, phone);
   };
 
   resetForm = () => this.setState(INITIAL_STATE);
@@ -44,8 +90,8 @@ class ContactForm extends Component {
     e.preventDefault();
     const { name, phone } = this.state;
     const { onAdd } = this.props;
-    const isValidForm = this.validateFrom();
-    if (!isValidForm) return;
+    const isExistPhone = this.validateFrom();
+    if (!isExistPhone) return;
     onAdd({ id: uuidv4(), name, phone });
     this.resetForm();
   };
@@ -53,8 +99,9 @@ class ContactForm extends Component {
   render() {
     const { name, phone } = this.state;
     return (
-      <form onSubmit={this.handleFromSubmit}>
+      <form className={style.contactForm} onSubmit={this.handleFromSubmit}>
         <input
+          className={style.contactForm__input}
           type="text"
           name="name"
           placeholder="Enter name"
@@ -62,13 +109,16 @@ class ContactForm extends Component {
           onChange={this.handleChangeInput}
         ></input>
         <input
+          className={style.contactForm__input}
           type="tel"
           name="phone"
           placeholder="Enter phone number"
           value={phone}
           onChange={this.handleChangeInput}
         ></input>
-        <button type="submit">Add Contact</button>
+        <button className={style.buttonSubmit} type="submit">
+          Add Contact
+        </button>
       </form>
     );
   }

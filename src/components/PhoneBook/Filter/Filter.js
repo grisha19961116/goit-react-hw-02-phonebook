@@ -16,7 +16,7 @@ class Filter extends Component {
     });
   };
   resetFilter = () => {
-    this.setState(prevState => ({
+    this.setState(() => ({
       filter: '',
     }));
   };
